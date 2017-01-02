@@ -1,0 +1,30 @@
+.headline h1, h2, h3 {
+	display: inline-block;
+}
+
+.panel-default {
+	background-color: gray;
+}
+
+.panel-default a {
+	color: silver;
+	text-decoration: none;
+}
+
+.panel-default a:hover {
+	color: gray;
+	text-decoration: none;
+}
+
+.panel-default:hover {
+	background-color: silver;
+}
+
+.img-circle {
+	max-width: 10%;
+}
+
+.live {
+	border: 2px solid red;
+	border-radius: 4px;
+}
