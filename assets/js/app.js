@@ -1,7 +1,7 @@
 
 $(function(){
 
-	var streamers = ["bonjwa", "kerrag", "moondye7", "freecodecamp", "esl_sc2"];
+	var streamers = ["bonjwa", "kerrag", "moondye7", "freecodecamp", "esl_sc2", "brunofin"];
 
 // streamers.forEach(function(s) {
 // 	$('#content').append("<p>" + s + "</p>");
@@ -54,11 +54,24 @@ function getUserDetails(user) {
 
 		$.getJSON('https://wind-bow.gomix.me/twitch-api/users/' + user)
 		.done(function(data) {
-			$("#" + user + " .headline")
+
+			if(data.status === 404) {
+				$("#" + user + " .headline")
+				.append("<h2>" + user + "<- does not exist!</h2>" +
+						"<span class='userInfo glyphicon glyphicon-info-sign pull-right'</span>");
+			} else if(data.status === 422) {
+				$("#" + user + " .headline")
+				.append("<h2> user <b>" + user + "</b> does not exist anymore!</h2>" +
+						"<span class='userInfo glyphicon glyphicon-info-sign pull-right'</span>");
+			} else {
+				$("#" + user + " .headline")
 			.append("<h2>" + data.display_name + "</h2>");
 
 			$("#" + user + " .headline")
-			.append("<img src='"+ data.logo  +"' alt='" + data.name +"_logo' class='img-circle pull-right'>")
+			.append("<img src='"+ data.logo  +"' alt='" + data.name +"_logo' class='img-circle pull-right'>")	
+			}
+
+			
 		})
 	
 }
